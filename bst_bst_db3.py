@@ -24,8 +24,10 @@ def insertToRootLengthTree(data):
     dataLength = len(data)
     nodeObj=Node(data)
     try:
-        searchLenghtInRLT(data,dataLength,nodeObj.RootLengthTree)
+        RLT = searchLenghtInRLT(data,dataLength,nodeObj.RootLengthTree)
         print('Inserted at RootLenghtTree')
+        RLTchecking(RLT)
+        
     except Exception as err:
         print(err)
 
@@ -41,18 +43,19 @@ def searchLenghtInRLT(data , dataLength,_RLT):
 
 
         if _RLT.data < dataLength :
-            searchLenghtInRLT(data , dataLength , _RLT.right)
+            _RLT.right = searchLenghtInRLT(data , dataLength , _RLT.right)
         else:
-            searchLenghtInRLT(data , dataLength , _RLT.left)
+            _RLT.left = searchLenghtInRLT(data , dataLength , _RLT.left)
+     return _RLT
 
-# def RLTchecking(RLT):
-#     if RLT is not None:
-#         RLTchecking(RLT.left)
-#         if len(RLT.info) != 0:
-#             print("\n For :",RLT.data)
-#             print("data are:",RLT.info)
-#
-#         RLTchecking(RLT.right)
+def RLTchecking(RLT):
+    if RLT is not None:
+        RLTchecking(RLT.left)
+        if len(RLT.info) != 0:
+            print("\n For :",RLT.data)
+            print("data are:",RLT.info)
+
+        RLTchecking(RLT.right)
 
 
 
